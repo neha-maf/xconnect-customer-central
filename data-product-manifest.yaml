@@ -1,0 +1,276 @@
+version: 0.0.1
+discoveryPort:
+  name: MAF XConnect Customer Central Manifest 21Apr23
+  description: Maf XConnect Customer Central
+  category: audience
+  image: http://google.com
+  autofillUserinfo: true
+  tags: []
+  extra: {}
+inputPorts:
+  - alias: 's3_maf_xconnect_crf_dim_account'
+    description: 'XConnect CRF Dim Account'
+    tags: []
+    extra: {}
+    syncType: 'pull'
+    type: 's3'
+    sourceUrn: urn:dv:datasource:8bd4b8e5-7385-4252-a571-3e2378425e80
+    entityId:
+      alias: 's3_maf_xconnect_crf_dim_account'
+      createEntity: true
+      type: 's3-bucket'
+      entityPath: "s3a://mafh-analytics-data-ingestion/data-ingestion/prd/parsed/rtl_crf_dim_account/##transactionDate##/*.txt"
+      sourceSchemaUrn: urn:dv:schema:9d4716d4
+      projectSchemaUrn: urn:dv:schema:9d4716d6
+      filter: ""
+      fileFormat: 'csv'
+      delimiter: "|"
+      header: true
+      entityVariables:
+        - key: transactionDate
+          value: date-YYYYMMdd
+      incrementalLoad: true
+      incrementalStrategy:
+          frequency:
+            - keyReference : transactionDate
+              mode: absolute
+              interval : -13
+      processingTimeColumn:
+        - processing_date
+      actualTimeColumn:
+        - processing_date
+      projection:
+        - '*'
+  - alias: 's3_maf_xconnect_gcr_phone'
+    description: 'XConnect GCR Phone'
+    tags: []
+    extra: {}
+    syncType: 'pull'
+    type: 's3'
+    sourceUrn: urn:dv:datasource:8bd4b8e5-7385-4252-a571-3e2378425e80
+    entityId:
+      alias: 's3_maf_xconnect_gcr_phone'
+      createEntity: true
+      type: 's3-bucket'
+      entityPath: "s3a://mafh-analytics-data-ingestion/airflow_framework/parsed/gcr/##transactionDateYear##/VW_GCR_PHONE_DETAIL*.txt"
+      sourceSchemaUrn: urn:dv:schema:9d4716d4
+      projectSchemaUrn: urn:dv:schema:9d4716d6
+      filter: ""
+      fileFormat: 'csv'
+      delimiter: "|"
+      header: true
+      entityVariables:
+        - key: transactionDateYear
+          value: date-YYYY-MM-dd
+      incrementalLoad: true
+      incrementalStrategy:
+          frequency:
+            - keyReference : transactionDateYear
+              mode: absolute
+              interval : -13
+      processingTimeColumn:
+        - processing_date
+      actualTimeColumn:
+        - processing_date
+      projection:
+        - '*'
+  - alias: 's3_maf_xconnect_gcr_email'
+    description: 'XConnect GCR Email'
+    tags: []
+    extra: {}
+    syncType: 'pull'
+    type: 's3'
+    sourceUrn: urn:dv:datasource:8bd4b8e5-7385-4252-a571-3e2378425e80
+    entityId:
+      alias: 's3_maf_xconnect_gcr_email'
+      createEntity: true
+      type: 's3-bucket'
+      entityPath: "s3a://mafh-analytics-data-ingestion/airflow_framework/parsed/gcr/##transactionDateYear##/VW_GCR_EMAIL_DETAIL*.txt"
+      sourceSchemaUrn: urn:dv:schema:9d4716d4
+      projectSchemaUrn: urn:dv:schema:9d4716d6
+      filter: ""
+      fileFormat: 'csv'
+      delimiter: "|"
+      header: true
+      entityVariables:
+        - key: transactionDateYear
+          value: date-YYYY-MM-dd
+      incrementalLoad: true
+      incrementalStrategy:
+          frequency:
+            - keyReference : transactionDateYear
+              mode: absolute
+              interval : -13
+      processingTimeColumn:
+        - processing_date
+      actualTimeColumn:
+        - processing_date
+      projection:
+        - '*'
+  - alias: 's3_maf_xconnect_gcr_customer'
+    description: 'XConnect GCR Customer'
+    tags: []
+    extra: {}
+    syncType: 'pull'
+    type: 's3'
+    sourceUrn: urn:dv:datasource:8bd4b8e5-7385-4252-a571-3e2378425e80
+    entityId:
+      alias: 's3_maf_xconnect_gcr_customer'
+      createEntity: true
+      type: 's3-bucket'
+      entityPath: "s3a://mafh-analytics-data-ingestion/airflow_framework/parsed/gcr/##transactionDateYear##/VW_GCR_CUSTOMER*.txt"
+      sourceSchemaUrn: urn:dv:schema:9d4716d4
+      projectSchemaUrn: urn:dv:schema:9d4716d6
+      filter: ""
+      fileFormat: 'csv'
+      delimiter: "%"
+      header: true
+      entityVariables:
+        - key: transactionDateYear
+          value: date-YYYY-MM-dd
+      incrementalLoad: true
+      incrementalStrategy:
+          frequency:
+            - keyReference : transactionDateYear
+              mode: absolute
+              interval : -13
+      processingTimeColumn:
+        - processing_date
+      actualTimeColumn:
+        - processing_date
+      projection:
+        - '*'
+  - alias: 's3_maf_xconnect_gcr_source_mapping'
+    description: 'XConnect GCR Source Mapping'
+    tags: []
+    extra: {}
+    syncType: 'pull'
+    type: 's3'
+    sourceUrn: urn:dv:datasource:8bd4b8e5-7385-4252-a571-3e2378425e80
+    entityId:
+      alias: 's3_maf_xconnect_gcr_source_mapping'
+      createEntity: true
+      type: 's3-bucket'
+      entityPath: "s3a://mafh-analytics-data-ingestion/airflow_framework/parsed/gcr/##transactionDateYear##/VW_GCR_MERGE_DETAIL*.txt"
+      sourceSchemaUrn: urn:dv:schema:9d4716d4
+      projectSchemaUrn: urn:dv:schema:9d4716d6
+      filter: ""
+      fileFormat: 'csv'
+      delimiter: "%"
+      header: true
+      entityVariables:
+        - key: transactionDateYear
+          value: date-YYYY-MM-dd
+      incrementalLoad: true
+      incrementalStrategy:
+          frequency:
+            - keyReference : transactionDateYear
+              mode: absolute
+              interval : -13
+      processingTimeColumn:
+        - processing_date
+      actualTimeColumn:
+        - processing_date
+      projection:
+        - '*'
+  - alias: 'dp_maf_xconnect_crf_customer_segment'
+    description: 'XConnect CRF Customer Segment'
+    tags: []
+    extra: {}
+    syncType: 'pull'
+    type: 'dataproduct'
+    dataProductUrn: urn:dv:dataproduct:10bd7eb8-a2f3-4341-b1ab-13b6d0439385
+    projection:
+        - '*'
+stateManagement:
+  alias: final_customer_central
+  refreshInterval: 30 9 * * *
+  updateStrategy: overwrite
+  productStoreState:
+    logicalSchemaUrn: urn:dv:schema:4b44a747-f0a2-4446-b2aa-dedfc33690be
+  retentionVersions: "10"
+  updateStrategyOptions:
+      uniqueKeyColumns:
+        - gcr_id
+        - first_name
+        - last_name
+        - email
+        - phone
+        - gender_code
+        - age_group
+        - nationality
+      changeTrackColumns:
+        - nothing
+transformation:
+    - alias: "phone_intermediate"
+      description: "step_1"
+      type: "SQL"
+      query: "SELECT gcr_id,phone FROM ods_gcr_phone WHERE is_primary = 'Y'"
+      references:
+        - alias: 's3_maf_xconnect_gcr_phone'
+          sqlReference: 'ods_gcr_phone'
+    - alias: "Email_intermediate"
+      description: "step_2"
+      type: "SQL"
+      query: "SELECT gcr_id,email FROM ods_gcr_email WHERE is_primary = 'Y'"
+      references:
+        - alias: 's3_maf_xconnect_gcr_email'
+          sqlReference: 'ods_gcr_email'
+    - alias: "source_mapping_intermediate"
+      description: "step_3"
+      type: "SQL"
+      query: "SELECT gsm.src_hash_id as hash_id, gsm.merged_gcr_id as gcr_id FROM ods_gcr_source_mapping gsm WHERE gsm.active_flag = 1"
+      references:
+        - alias: 's3_maf_xconnect_gcr_source_mapping'
+          sqlReference: 'ods_gcr_source_mapping'
+    - alias: "customer_intermediate"
+      description: "step_4"
+      type: "SQL"
+      query: "SELECT gcr_id, first_name, last_name, gender_code, case  when (datediff(TO_DATE('2023-12-31', 'yyyy-MM-dd'),TO_DATE(date_of_birth, 'yyyy-MM-dd')) / 365  ) < 18 then '< 18'  when (datediff(TO_DATE('2023-12-31', 'yyyy-MM-dd'),TO_DATE(date_of_birth, 'yyyy-MM-dd')) / 365  ) between 18  and 24 then '18 - 24'  when (datediff(TO_DATE('2023-12-31', 'yyyy-MM-dd'),TO_DATE(date_of_birth, 'yyyy-MM-dd')) / 365  ) between 25  and 34 then '25 - 34'  when (datediff(TO_DATE('2023-12-31', 'yyyy-MM-dd'),TO_DATE(date_of_birth, 'yyyy-MM-dd')) / 365  ) between 35  and 49 then '35 - 49'  when (datediff(TO_DATE('2023-12-31', 'yyyy-MM-dd'),TO_DATE(date_of_birth, 'yyyy-MM-dd')) / 365  ) between 50  and 65 then '50 - 65'  when (datediff(TO_DATE('2023-12-31', 'yyyy-MM-dd'),TO_DATE(date_of_birth, 'yyyy-MM-dd')) / 365  ) > 65 then '65 +' end as age_group FROM ods_gcr_customer"
+      references:
+        - alias: 's3_maf_xconnect_gcr_customer'
+          sqlReference: 'ods_gcr_customer'
+    - alias: "customer_segment_intermediate"
+      description: "step_5"
+      type: "SQL"
+      query: "SELECT  dcs.account_key,dcs.month_key,dcs.rfm_st_code_name,dcs.organic,dcs.fitness,dcs.sport,dcs.vegan_prod,dcs.SH_NCAT_CODE,   dcs.MACRO_CODE,dcs.clc_code,da.customer_id as original_customer_id,md5(da.customer_id) as crf_account_hash_id,da.cust_nationality as nationality  FROM  ods_crf_dim_customer_segment dcs   LEFT JOIN ods_crf_dim_account da ON CONCAT('C', dcs.account_key) = da.customer_id"
+      references:
+        - alias: 'dp_maf_xconnect_crf_customer_segment'
+          sqlReference: 'ods_crf_dim_customer_segment'
+        - alias: 's3_maf_xconnect_crf_dim_account'
+          sqlReference: 'ods_crf_dim_account'
+    - alias: "customer_segment_source_mapping"
+      description: "step_6"
+      type: "SQL"
+      query: "SELECT t2.hash_id, t2.gcr_id, t1.rfm_st_code_name, t1.organic, t1.fitness, t1.sport, t1.vegan_prod, t1.SH_NCAT_CODE, t1.MACRO_CODE, t1.clc_code, t1.nationality FROM customer_segment_intermediate  t1 LEFT JOIN source_mapping_intermediate t2 ON t1.crf_account_hash_id = t2.hash_id"
+      references:
+        - alias: 'customer_segment_intermediate'
+          sqlReference: 'customer_segment_intermediate'
+        - alias: 'source_mapping_intermediate'
+          sqlReference: 'source_mapping_intermediate'
+    - alias: "customer_segment_source_mapping_l2"
+      description: "step_7"
+      type: "SQL"
+      query: "SELECT sgmnt.gcr_id, sgmnt.rfm_st_code_name, sgmnt.organic, sgmnt.fitness, sgmnt.sport, sgmnt.vegan_prod, sgmnt.SH_NCAT_CODE, sgmnt.MACRO_CODE, sgmnt.clc_code, gc.first_name, gc.last_name, gc.gender_code, gc.age_group, ge.email, gp.phone, sgmnt.nationality FROM customer_segment_source_mapping sgmnt LEFT JOIN  customer_intermediate gc ON sgmnt.gcr_id = gc.gcr_id LEFT JOIN Email_intermediate ge ON sgmnt.gcr_id = ge.gcr_id LEFT JOIN phone_intermediate gp ON sgmnt.gcr_id = gp.gcr_id"
+      references:
+        - alias: 'customer_segment_source_mapping'
+          sqlReference: 'customer_segment_source_mapping'
+        - alias: 'customer_intermediate'
+          sqlReference: 'customer_intermediate'
+        - alias: 'Email_intermediate'
+          sqlReference: 'Email_intermediate'
+        - alias: 'phone_intermediate'
+          sqlReference: 'phone_intermediate'
+    - alias: "final_customer_central"
+      description: "step_8"
+      type: "SQL"
+      query: "SELECT rand() id,f.gcr_id, f.rfm_st_code_name, f.organic, f.fitness, f.sport, f.vegan_prod, f.SH_NCAT_CODE, f.MACRO_CODE, f.clc_code, f.first_name, f.last_name, f.gender_code, f.age_group, f.email, f.phone, f.nationality FROM customer_segment_source_mapping_l2 f"
+      references:
+        - alias: 'customer_segment_source_mapping_l2'
+          sqlReference: 'customer_segment_source_mapping_l2'
+outputPort:
+  channels:
+    - channelType: REST-API
+      queryType: SQL
+    - channelType: JDBC
+      queryType: SQL
