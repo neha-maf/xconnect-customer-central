@@ -1,6 +1,6 @@
 version: 0.0.1
 discoveryPort:
-  name: MAF XConnect Customer Central Manifest 21Apr23
+  name: MAF XConnect Customer Central latest
   description: Maf XConnect Customer Central
   category: audience
   image: http://google.com
