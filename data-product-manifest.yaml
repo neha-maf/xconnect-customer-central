@@ -136,7 +136,7 @@ inputPorts:
     description: XConnect CRF Customer Segment
     syncType: pull
     type: 'dataproduct'
-    dataProductUrn: urn:dv:dataproduct:61599015-9992-4298-b8fe-9bb53abc3ba7
+    dataProductUrn: urn:dv:dataproduct:e42ebcb0-4486-4baa-8322-66754860a1b3
     projection:
         - '*'
 productState:
